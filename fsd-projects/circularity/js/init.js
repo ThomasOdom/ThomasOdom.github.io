@@ -23,8 +23,18 @@ var init = function (window) {
 
     var drawCircle = function () {
       circle = draw.randomCircleInArea(canvas, true, true, "#ff0000ff", 2);
+      // assign a per-object hue speed so some cycle faster/slower
+      try {
+        circle.hueSpeed = 0.8 + Math.random() * 1.6; // ~0.8x - 2.4x
+      } catch (e) {
+        // ignore
+      }
       physikz.addRandomVelocity(circle, canvas, 20, 25);
       view.addChild(circle);
+      // ensure there's a radius property for color drawing / wrap checks
+      if (!circle.radius) {
+        circle.radius = Math.max(8, Math.round(10 + Math.random() * 16));
+      }
       circles.push(circle);
     };
 
@@ -70,14 +80,49 @@ var init = function (window) {
         */
     function update() {
       // TODO 4 : Update the position of each circle using physikz.updatePosition()
-      
 
       // TODO 5 : Call game.checkCirclePosition() on your circles
 
       // TODO 8 / TODO 9 : Iterate over the array
       for (var i = 0; i < circles.length; i++) {
-        physikz.updatePosition(circles[i]);
-        game.checkCirclePosition(circles[i]);
+        var c = circles[i];
+        physikz.updatePosition(c);
+        game.checkCirclePosition(c);
+
+        // faster color animation so changes are visible as objects pass
+        try {
+          var speed = (c && c.hueSpeed) || 1;
+          // Date.now()/8 gives ~2.9s per full hue cycle at speed=1 (360*8 ms)
+          var hue = Math.floor(((Date.now() / 8) * speed + i * 12) % 360);
+          var fill = "hsl(" + hue + ",75%,60%)";
+
+          // support Container-with-Shape (first child) or plain Shape objects
+          if (
+            c &&
+            typeof c.getChildAt === "function" &&
+            c.getNumChildren &&
+            c.getNumChildren() > 0
+          ) {
+            try {
+              var bg = c.getChildAt(0);
+              var r = c.radius || bg.radius || 10;
+              if (bg && bg.graphics) {
+                bg.graphics.clear().beginFill(fill).drawCircle(0, 0, r);
+              }
+            } catch (e) {
+              // ignore per-object update errors
+            }
+          } else if (c && c.graphics) {
+            try {
+              var rr = c.radius || 10;
+              c.graphics.clear().beginFill(fill).drawCircle(0, 0, rr);
+            } catch (e) {
+              // ignore
+            }
+          }
+        } catch (e) {
+          // ignore
+        }
       }
     }
 
