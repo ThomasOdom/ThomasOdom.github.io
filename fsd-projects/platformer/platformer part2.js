@@ -18,7 +18,7 @@ $(function () {
 
     // Create walls - do not delete or modify this code
     createPlatform(-50, -50, canvas.width + 100, 50); // top wall
-    createPlatform(-50, canvas.height - 10, canvas.width + 100, 200, "grey"); // bottom wall
+    createPlatform(-50, canvas.height - 10, canvas.width + 100, 200, "white smoke"); // bottom wall
     createPlatform(-50, -50, 50, canvas.height + 500); // left wall
     createPlatform(canvas.width, -50, 50, canvas.height + 100); // right wall
 
@@ -53,28 +53,28 @@ $(function () {
 // Today is 12/1/25 we are making a new pltformer
 
 
-createPlatform(1200, 700, 100, 10);
-createPlatform(900, 590, 100, 10);
-createPlatform(545, 500, 110, 10);
-createPlatform(200, 400, 110, 5);
-createPlatform(1200, 700, 100, 1);
-createPlatform(200, 100, 0.25, 500, "white");
-createPlatform(995, 100, 5, 305);
-createPlatform(1400, 100, 5, 300);
-createPlatform(1100, 100, 300, 5);
-createPlatform(995, 405, 400, 5);
-createPlatform(500, 295, 100, 10);
-createPlatform(800, 200, 100, 10);
-createPlatform(1000, 200, 300, 1);
-createPlatform(1300, 200, 0.85, 100, 'light grey');
-createPlatform(1250, 300, 1, 100, 'light grey');
-createPlatform(1200, 200, 0.85, 100, 'light grey');
-createPlatform(1150, 300, 1, 100, 'light grey');
-createPlatform(1100, 200, 0.85, 100, 'light grey');
-createPlatform(1050, 285, 1, 115, 'light grey');
-createPlatform(1350, 300, 50, 0.45);
-createPlatform(1350, 300, 0.45, 106)
-createPlatform(200, 200, 100, 0.25);
+createPlatform(1200, 700, 100, 10, "lightgrey");
+createPlatform(900, 590, 100, 10, "lightgrey");
+createPlatform(545, 500, 110, 10, "lightgrey");
+createPlatform(200, 400, 110, 5, "lightgrey");
+createPlatform(1200, 700, 100, 1, "lightgrey");
+createPlatform(200, 100, 0.25, 500, "lightgrey");
+createPlatform(995, 100, 5, 305, "lightgrey");
+createPlatform(1400, 100, 5, 300, "lightgrey");
+createPlatform(1100, 100, 300, 5, "lightgrey");
+createPlatform(995, 405, 400, 5, "lightgrey");
+createPlatform(500, 295, 100, 10, "lightgrey");
+createPlatform(800, 200, 100, 10, "lightgrey");
+createPlatform(1000, 200, 300, 1, "lightgrey");
+createPlatform(1300, 200, 0.85, 100, "lightgrey");
+createPlatform(1250, 300, 1, 100, "lightgrey");
+createPlatform(1200, 200, 0.85, 100, "lightgrey");
+createPlatform(1150, 300, 1, 100, "lightgrey");
+createPlatform(1100, 200, 0.85, 100, "lightgrey");
+createPlatform(1050, 285, 1, 115, "lightgrey");
+createPlatform(1350, 300, 50, 0.45, "lightgrey");
+createPlatform(1350, 300, 0.45, 106, "lightgrey")
+createPlatform(200, 200, 100, 0.25, "lightgrey");
     // TODO 3 - Create Collectables
 // createCollectable("diamond", 1155, 501, 0);
 // createCollectable("database", 740, 400, 0.5, 1);
